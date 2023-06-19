@@ -2,14 +2,15 @@ import axios from "axios";
 import React from 'react';
 import logo from './logo.svg';
 import { defaultConfig, dynamicConfigUrl, useConfig } from "@guedesplace/designelements";
+import './App.css';
+import { BusinessApp } from "./BusinessApp";
 
 const configLoadingErrorMessage =
   "Error while fetching global config, the App wil not be rendered. (This is NOT a React error.)";
 
 
-import './App.css';
 
-export const App:React.FunctionComponent = ()=> {
+export const App: React.FunctionComponent = () => {
   const { setConfig } = useConfig();
   const [configLoadingState, setConfigLoadingState] = React.useState<
     "loading" | "ready" | "error"
@@ -35,14 +36,14 @@ export const App:React.FunctionComponent = ()=> {
         if (process.env.NODE_ENV === "development") {
           //log.warn(
           //  `Failed to load global configuration from '${dynamicConfigUrl}', using the default configuration instead:`,
-            defaultConfig
+          setConfig(defaultConfig);
           //);
           setConfigLoadingState("ready");
         } else {
           //log.error(
-            //configLoadingErrorMessage,
-            //`Have you provided the config file '${dynamicConfigUrl}'?`,
-            //e
+          //configLoadingErrorMessage,
+          //`Have you provided the config file '${dynamicConfigUrl}'?`,
+          //e
           //);
           setConfigLoadingState("error");
         }
@@ -50,7 +51,7 @@ export const App:React.FunctionComponent = ()=> {
   }, [setConfig]);
 
   if (configLoadingState === "loading") {
-    return "Loading the app..."; // change to some visual CircularProgress in real app
+    return <div>"Loading the app..."</div>; // change to some visual CircularProgress in real app
   }
   if (configLoadingState === "error") {
     return (
@@ -59,25 +60,30 @@ export const App:React.FunctionComponent = ()=> {
       </p>
     );
   }
+  if (configLoadingState === "ready") {
+    return <BusinessApp></BusinessApp>
+  }
+  return <div>Something went complete wrong!</div>
 
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  /*
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Edit <code>src/App.tsx</code> and save to reload.
+          </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+        </header>
+      </div>
+    );
+    */
 }
 

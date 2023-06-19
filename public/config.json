@@ -1,0 +1,9 @@
+{
+    "appApiUrl": "https://notedefined",
+    "commonApiURL":"https://notdefined",
+    "authority":"https://guedesplacefriends.b2clogin.com/guedesplacefriends.onmicrosoft.com/B2C_1_createsign",
+    "authorityDomain":"guedesplacefriends.b2clogin.com",
+    "editProfileUrl":"",
+    "applicationId":"a2606ec8-c1a1-4ac1-acad-8591a71eee8b",
+    "organisationId":"fpdev"
+  }
