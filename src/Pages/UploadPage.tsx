@@ -1,8 +1,13 @@
-import { Stack, Text } from '@fluentui/react';
-import { Page } from '@guedesplace/designelements';
+import { Page, PictureUploader } from '@guedesplace/designelements';
 import React from 'react';
 import { navigationTree } from '../Utils/navigationTree';
 
 export const UploadPage:React.FunctionComponent =()=> {
-    return <Page title='Upload new pictures' navigationItems={navigationTree}></Page>
+    return <Page title="Upload new pictures" navigationItems={navigationTree}>
+        <PictureUploader
+            instructions="Please select the pictures you want to upload"
+            onUploadStart={(f)=>console.log(f)}
+            uploadStatus={[]}
+        ></PictureUploader>
+    </Page>
 }
